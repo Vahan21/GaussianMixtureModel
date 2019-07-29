@@ -7,3 +7,5 @@ The project has 4 files: 'clustering.py' containing K means clustering, 'gaussia
 
  The project is written in python 3.7 and numpy and also uses plots from matplotlib.
 
+#### Known Issues
+The program works unstable when the number of clusters is large (e.g. 10 and more).
