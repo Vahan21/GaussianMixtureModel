@@ -1,4 +1,4 @@
-# Stock Predictor
+# Gaussian Mixture Model
 Custom implementation of Gaussian Mixture model and K Means
 
 ### Short description
