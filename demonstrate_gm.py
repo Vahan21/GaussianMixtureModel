@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
-import pickle
+import numpy as np
 
+from sklearn.datasets import make_blobs
 from sklearn.model_selection import train_test_split
 from sklearn import mixture
 from gaussian_mixture import GaussianMixture
@@ -8,8 +9,10 @@ from gaussian_mixture import GaussianMixture
 
 # get a random generated data
 def get_data(visualize=True):
-	with open('data.pickle', 'rb') as f:
-		data_points = pickle.load(f)
+	data_points, _ = make_blobs(n_samples=100, n_features=2, centers=2)
+	rng = np.random.RandomState(74)
+	transformation = rng.normal(size=(data_points.shape[1], data_points.shape[1]))
+	data_points = np.dot(data_points, transformation)
 	if visualize:
 		plt.scatter(data_points[:, 0], data_points[:, 1])
 		plt.xlabel("Feature 0")
@@ -30,4 +33,4 @@ sk_gm.fit(x_train)
 sk_predictions = sk_gm.predict(x_test)
 
 print(f'Custom implementation predictions: {predictions}')
-print(f'SKlearn implementation predictions: {sk_predictions}')
+print(f'SKlearn implementation predictions: {list(sk_predictions)}')

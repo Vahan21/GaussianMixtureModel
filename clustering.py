@@ -24,7 +24,7 @@ class KMeans:
 		self.n_features = x.shape[1]
 		means = []
 		for _ in range(self.k):
-			random_index = np.random.randint(0, len(x), 1)
+			random_index = np.random.randint(0, len(x))
 			means.append(x[random_index])
 
 		for iteration in range(self.max_iter):
@@ -45,6 +45,7 @@ class KMeans:
 				means[i] = np.mean(cluster, axis=0)
 
 			# check if the new means have moved compared to the previous ones
+
 			if np.allclose(means, prev_means, atol=self.tol):
 				print('Optimized KMeans')
 				self.means = means
@@ -55,7 +56,7 @@ class KMeans:
 					self.covariance_matrices.append(np.cov(clusters[i], rowvar=False))
 					self.cluster_probabilities.append(len(clusters[i]))
 				return
-		print('Unable to optimize in given steps.')
+		raise Exception('Unable to optimize Gaussian Mixture in given steps.')
 
 	def predict(self, x):
 		if x.shape[1] != self.n_features:

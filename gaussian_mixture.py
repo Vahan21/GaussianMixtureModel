@@ -81,7 +81,7 @@ class GaussianMixture:
 				if self.visualization_level > 0:
 					self._visualize(clusters, means, show=True)
 				return
-		print('Unable to optimize in given steps.')
+		raise Exception('Unable to optimize Gaussian Mixture in given steps.')
 
 	def predict(self, x: np.ndarray):
 		if x.shape[1] != self.n_features:
