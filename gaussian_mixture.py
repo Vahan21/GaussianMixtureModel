@@ -61,6 +61,9 @@ class GaussianMixture:
 			# remove empty clusters
 			clusters = [cluster for cluster in clusters if cluster != []]
 
+			# update cluster probabilities
+			cluster_probabilities = [len(cluster) for cluster in clusters]
+
 			prev_means = means.copy()
 
 			# calculate means and covariance matrices for new clusters

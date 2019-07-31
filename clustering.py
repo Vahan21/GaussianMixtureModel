@@ -52,13 +52,12 @@ class KMeans:
 				self.clusters = clusters
 				self.covariance_matrices = []
 				self.cluster_probabilities = []
-				for i in range(self.k):
-					# make sure the program does not crash if k is larger than number of clusters
-					try:
+				try:
+					for i in range(self.k):
 						self.covariance_matrices.append(np.cov(clusters[i], rowvar=False))
 						self.cluster_probabilities.append(len(clusters[i]))
-					except IndexError:
-						pass
+				except IndexError:
+					pass
 				return
 
 		raise Exception('Unable to optimize Gaussian Mixture in given steps.')
